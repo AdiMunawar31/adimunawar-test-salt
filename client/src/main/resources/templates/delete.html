@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Konfirmasi Hapus</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .confirmation-box {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border: 2px solid rgb(0, 0, 0);
+            box-shadow: 10px 10px 0 0 rgba(0, 0, 0, 0.973);
+            border-radius: 8px; 
+        }
+
+        .confirmation-box h2 {
+            margin-top: 0;
+        }
+
+        .confirmation-box button {
+            margin: 10px;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-box">
+        <h2>Konfirmasi</h2>
+        <p>Apakah Anda yakin ingin menghapus data ini?</p>
+        <button onclick="hapusData()">Ya, hapus</button>
+        <button onclick="batal()">Batal</button>
+    </div>
+
+    <script>
+        function hapusData() {
+            window.location.href = "/consumer/delete/${consumerId}";
+        }
+
+        function batal() {
+            history.back();
+        }
+    </script>
+</body>
+</html>

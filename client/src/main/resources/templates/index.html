@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Consumer List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.7/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+</head>
+<body>
+    <div th:replace="header"></div>
+
+    <div th:if="${successMessage}">
+        <div class="alert alert-success" th:text="${successMessage}"></div>
+    </div>
+    
+    
+    <div style="margin-top: 50px;">
+        <a th:href="@{/consumer/add}" class="btns">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            Customer
+        </a>
+    </div>
+
+    <div class="container tables">
+
+        <table id="consumerTable" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>Kota</th>
+                    <th>Provinsi</th>
+                    <th>Tanggal Registrasi</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="consumer, iterStat : ${consumers}">
+                    <td th:text="${iterStat.index + 1}"></td>
+                    <td th:text="${consumer.nama}"></td>
+                    <td th:text="${consumer.alamat}"></td>
+                    <td th:text="${consumer.kota}"></td>
+                    <td th:text="${consumer.provinsi}"></td>
+                    <td th:text="${consumer.tglRegistrasi}"></td>
+                    <td th:text="${consumer.status}"></td>
+                    <td>
+                        <a th:href="@{'/consumer/detail/' + ${consumer.id}}" title="Detail" style="margin-right: 10px; color: green;"><i class="fa fa-eye"></i></a>
+                        <a th:href="@{'/consumer/edit/' + ${consumer.id}}" title="Edit" style="margin-right: 10px;"><i class="fa fa-pencil"></i></a>
+                        <a th:href="@{'/consumer/delete/' + ${consumer.id}}" style="color: red;" title="Hapus"><i class="fa fa-trash"></i></a>
+                    </td>                                       
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="footer"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- Inisialisasi DataTables -->
+    <script>
+        $(document).ready(function() {
+            new DataTable('#consumerTable');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.7/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+</head>
+<body>
+    <div th:replace="header"></div>
+
+    <div class="container" style="margin-top: 50px;">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header bg-primary text-white"><i class="fa fa-envelope"></i> Edit Consumer</div>
+                    <div class="card-body">
+                        <form th:action="@{'/consumer/edit/' + ${consumerDto.id}}" th:object="${consumerDto}" method="post">
+                            <div class="form-group" style="margin-bottom: 10px;">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" th:field="*{nama}" placeholder="Enter name" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 10px;">
+                                <label for="alamat">Alamat</label>
+                                <input type="text" class="form-control" id="alamat" th:field="*{alamat}" placeholder="Enter alamat" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 10px;">
+                                <label for="kota">Kota</label>
+                                <input type="text" class="form-control" id="kota" th:field="*{kota}" placeholder="Enter kota" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 10px;">
+                                <label for="provinsi">Provinsi</label>
+                                <input type="text" class="form-control" id="provinsi" th:field="*{provinsi}" placeholder="Enter provinsi" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 20px;">
+                                <label for="status">Status</label>
+                                <input type="text" class="form-control" id="status" th:field="*{status}" placeholder="Enter status" required>
+                            </div>
+                            <div class="mx-auto" style="margin-top: 10px; display: flex;">
+                                <button type="submit" class="btn btn-primary text-right">Submit</button>
+                                <a th:href="@{/consumer}" class="btn btn-danger text-right" style="margin-left: 10px;">Cancel</a>
+                            </div>
+                        </form>
+                        
+                    
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class="card bg-light mb-3">
+                    <div class="card-header bg-success text-white text-uppercase"><i class="fa fa-home"></i> Example</div>
+                    <div class="card-body">
+                        <p>John Doe</p>
+                        <p>75008 PARIS</p>
+                        <p>France</p>
+                        <p>Email: email@example.com</p>
+                        <p>Aktif/No</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="footer"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>
